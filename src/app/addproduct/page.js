@@ -1,7 +1,9 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import "../style.css"
 export  default function Page(){
+    const router = useRouter();
     const [input,setInput] = useState({
         name:"",
         price:"",
@@ -26,6 +28,7 @@ export  default function Page(){
         const response = await data.json();
         if(response.success){
             alert("product added")
+            router.push('/');
         }
         setInput({
             name:"",
