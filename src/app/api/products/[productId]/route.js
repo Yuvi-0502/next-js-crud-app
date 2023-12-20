@@ -11,6 +11,9 @@ export async function PUT(request, content) {
 
   const data = await Product.findByIdAndUpdate({_id:id},{$set:body},{ new: true })
 
+  if(!data)
+  return NextResponse.json({ result: "Not found", success:false },{status: 404});
+
   return NextResponse.json({ result: data, success:true },{status: 200});
 }
 
@@ -20,6 +23,9 @@ export async function GET(request, content) {
     await mongoose.connect(connectionLink);
   
     const data = await Product.findById({_id:id})
+    
+    if(!data)
+      return NextResponse.json({ result: "Not found", success:false },{status: 404});
   
     return NextResponse.json({ result: data, success:true },{status: 200});
 }
@@ -30,6 +36,9 @@ export async function DELETE(request, content) {
     await mongoose.connect(connectionLink);
   
     const data = await Product.findOneAndDelete({_id:id})
+
+    if(!data)
+    return NextResponse.json({ result: "Not found", success:false },{status: 404});
   
     return NextResponse.json({ result: data, success:true },{status: 200});
   }

@@ -2,7 +2,7 @@ import DeleteProduct from "@/lib/DeleteProduct";
 import Link from "next/link";
 
 const getProducts = async () => {
-  const data = await fetch("http://localhost:3000/api/products",{cache:"no-cache"});
+  const data = await fetch(`${process.env.appurl}`,{cache:"no-cache"});
   const response = await data.json();
   if (response.success) {
     return response.result;

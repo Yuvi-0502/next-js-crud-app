@@ -4,6 +4,7 @@ import "../../style.css";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 export default function Page({ params }) {
+  const {appurl} = process.env;
     const router = useRouter();
   const [input, setInput] = useState({
     name: "",
@@ -21,10 +22,12 @@ export default function Page({ params }) {
   };
 
   const getProductDetails = async () => {
+   
     const data = await fetch(
       `http://localhost:3000/api/products/${params.productId}`
     );
     const response = await data.json();
+   
     if (response.success) {
       const defaultValue = response.result;
       setInput({

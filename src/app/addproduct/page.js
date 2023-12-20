@@ -21,7 +21,7 @@ export  default function Page(){
     }
 
     const saveProduct = async() =>{
-        const data = await fetch('http://localhost:3000/api/products',{
+        const data = await fetch(`http://localhost:3000/api/products`,{
             method:"post",
             body:JSON.stringify(input)
         });
